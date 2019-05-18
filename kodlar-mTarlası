@@ -1,0 +1,820 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace WindowsFormsApplication8
+{
+    public partial class Form6 : Form
+    {
+        public Form6()
+        {
+            InitializeComponent();
+        }
+
+        private void Form6_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        void btn_Click(object sender, EventArgs e)
+        {
+            //Kodlar
+            Button btn = (sender as Button);
+
+            if (btn.Name == "m") 
+            {
+
+                btn.Text = "X";
+                btn.BackColor = Color.Red;
+                btn.ForeColor = Color.Blue;
+                MessageBox.Show("mayına tıkladınız");
+                this.Dispose();
+
+            }
+            else if (btn.Name == "s")
+            {
+
+                btn.Text = "S";
+                btn.BackColor = Color.LightBlue;
+                btn.ForeColor = Color.Blue;
+            }
+
+            else
+            {
+                if (btn.ForeColor == Color.Black)
+                {
+                    btn.Text = btn.Name;// " ";
+                    btn.BackColor = Color.LightGreen;// Blue;
+                }
+                else
+                {
+                    btn.Text = "O";
+                    btn.BackColor = Color.White;
+                    if (label2.Text == "kolay")
+                    {
+                        btn.Click += new EventHandler(btn_Click);
+
+                    }
+                }
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form.ActiveForm.Refresh();
+
+            int[] sayi = new int[10];
+            Random rnd = new Random();  //random sayı üretme
+
+            int sayici = 0;
+            int rndom = 0;
+
+            while (sayici < 10)
+            {
+                rndom = rnd.Next(0, 99);  //1 ile 100 arasında sayı atama
+
+                if (Array.IndexOf(sayi, rndom) == -1)
+                    sayi[sayici++] = rndom;
+            }
+
+            Array.Sort(sayi);   // diziyi kendi arasında sıralar   
+
+            label1.Text = " ";
+            label2.Text = "kolay";
+
+            for (int l = 0; l < 10; l++)
+            {
+                label1.Text += sayi[l].ToString() + " ";//mayınlar
+            }
+            int a = 0;
+
+            int[] kenar2 = new int[10] { 0, 10, 20, 30, 40, 50, 60, 70, 80, 90 };
+            int[] kenar3 = new int[10] { 9, 19, 29, 39, 49, 59, 69, 79, 89, 99 };
+            int[] mtdizi = new int[100];
+
+            for (int j = 0; j < 10; j++)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Button btn = new Button();
+                    btn.Top = i * 30;
+                    btn.Width = 30;
+                    btn.Height = 30;
+                    btn.Left = j * 30;
+
+                    btn.Name = a.ToString();
+
+                    btn.Text = " ";//a.ToString();
+
+                    btn.BackColor = Color. LightSeaGreen;
+                    btn.ForeColor = Color.Blue;
+                    //int z = 0;
+                    if (Array.IndexOf(kenar2, a) != -1)
+                    {
+                        for (int y = 0; y < 10; y++)
+                        {
+                            if (sayi[y] == a)
+                            {
+                                btn.Name = "m";
+                                btn.ForeColor = Color.Blue;
+                            }
+                            if (sayi[y] == (a + 1))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 10))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 11))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 10))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 9))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+
+                        }
+                    }
+                    else if (Array.IndexOf(kenar3, a) != -1)
+                    {
+                        for (int y = 0; y < 10; y++)
+                        {
+                            if (sayi[y] == a)
+                            {
+                                btn.Name = "m";
+                            }
+                            if (sayi[y] == (a - 1))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 10))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 11))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 10))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 9))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        for (int y = 0; y < 10; y++)
+                        {
+                            if (sayi[y] == a)
+                            {
+                                btn.Name = "m";
+                            }
+                            if (sayi[y] == (a + 1))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 1))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 10))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 11))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 11))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 10))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 9))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 9))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                        }
+                    }
+                    a++;
+
+                    this.Controls.Add(btn);
+
+                    btn.Click += new EventHandler(btn_Click);
+
+                }
+            }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form.ActiveForm.Refresh();
+
+            int[] sayi = new int[25];
+            Random rnd = new Random();  //random sayı üretme
+
+            int sayici = 0;
+            int rndom = 0;
+
+            while (sayici < 25) 
+            {
+                rndom = rnd.Next(0, 224);  //1 ile 100 arasında sayı atama
+
+                if (Array.IndexOf(sayi, rndom) == -1)
+                    sayi[sayici++] = rndom;
+            }
+
+            Array.Sort(sayi);   // diziyi kendi arasında sıralar   
+
+            label1.Text = " ";
+
+            for (int l = 0; l < 25; l++)
+            {
+                label1.Text += sayi[l].ToString() + " ";//mayınlar
+            }
+            int a = 0;
+
+            int[] kenar2 = new int[15] { 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210 };
+            int[] kenar3 = new int[15] { 14, 29, 44, 59, 74, 89, 104, 119, 134, 149, 164, 179, 194, 209, 224 };
+            int[] mtdizi = new int[225];
+
+            for (int j = 0; j < 15; j++)
+            {
+                for (int i = 0; i < 15; i++)
+                {
+                    Button btn = new Button();
+                    btn.Top = i * 30;
+                    btn.Width = 30;
+                    btn.Height = 30;
+                    btn.Left = j * 30;
+
+                    btn.Name = a.ToString();
+
+                    btn.Text = " ";//a.ToString();
+
+                    btn.BackColor = Color.LightSeaGreen;
+                    btn.ForeColor = Color.Blue;
+                    //int z = 0;
+                    if (Array.IndexOf(kenar2, a) != -1)
+                    {
+                        for (int y = 0; y < 25; y++)
+                        {
+                            if (sayi[y] == a)
+                            {
+                                btn.Name = "m";
+                            }
+                            if (sayi[y] == (a + 1))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 15))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 16))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 15))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 14))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+
+                        }
+                    }
+                    else if (Array.IndexOf(kenar3, a) != -1)
+                    {
+                        for (int y = 0; y < 25; y++)
+                        {
+                            if (sayi[y] == a)
+                            {
+                                btn.Name = "m";
+                            }
+                            if (sayi[y] == (a - 1))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 15))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 16))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 15))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 14))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        for (int y = 0; y < 25; y++)
+                        {
+                            if (sayi[y] == a)
+                            {
+                                btn.Name = "m";
+                            }
+                            if (sayi[y] == (a + 1))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 1))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 15))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 16))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 16))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 15))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 14))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 14))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                        }
+                    }
+                    a++;
+
+                    this.Controls.Add(btn);
+
+                    btn.Click += new EventHandler(btn_Click);
+                }
+            }
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int[] sayi = new int[99];
+            Random rnd = new Random();  //random sayı üretme
+            int sayici = 0;
+            int rndom = 0;
+            while (sayici < 99)
+            {
+                rndom = rnd.Next(0, 374);  //1 ile 100 arasında sayı atama
+                if (Array.IndexOf(sayi, rndom) == -1)
+                    sayi[sayici++] = rndom;
+            }
+
+            Array.Sort(sayi);   // diziyi kendi arasında sıralar 
+            label1.Text = " "; 
+            for (int l = 0; l < 99; l++)
+            {
+                label1.Text += sayi[l].ToString() + " ";//mayınlar
+            }
+            int a = 0;
+            int[] kenar2 = new int[25] { 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 330, 345, 360};
+            int[] kenar3 = new int[25] { 14, 29, 44, 59, 74, 89, 104, 119, 134, 149, 164, 179, 194, 209, 224, 239, 254, 269, 284, 299, 314, 329, 344, 359, 374 };
+            int[] mtdizi = new int[375];
+            for (int j = 0; j < 25; j++)
+            {
+                for (int i = 0; i < 15; i++)
+                {
+                    Button btn = new Button();
+                    btn.Top = i * 30;
+                    btn.Width = 30;
+                    btn.Height = 30;
+                    btn.Left = j * 30;
+
+                    btn.Name = a.ToString();
+
+                    btn.Text = " ";//a.ToString();
+
+                    btn.BackColor = Color.LightSeaGreen;
+                    btn.ForeColor = Color.Blue;
+                    //int z = 0;
+                    if (Array.IndexOf(kenar2, a) != -1)
+                    {
+                        for (int y = 0; y < 99; y++)
+                        {
+                            if (sayi[y] == a)
+                            {
+                                btn.Name = "m";
+                            }
+                            if (sayi[y] == (a + 1))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 15))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 16))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 15))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 14))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+
+                        }
+                    }
+                    else if (Array.IndexOf(kenar3, a) != -1)
+                    {
+                        for (int y = 0; y < 99; y++)
+                        {
+                            if (sayi[y] == a)
+                            {
+                                btn.Name = "m";
+                            }
+                            if (sayi[y] == (a - 1))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 15))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 16))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 15))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 14))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        for (int y = 0; y < 99; y++)
+                        {
+                            if (sayi[y] == a)
+                            {
+                                btn.Name = "m";
+                            }
+                            if (sayi[y] == (a + 1))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 1))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 15))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 16))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 16))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 15))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a - 14))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                            if (sayi[y] == (a + 14))
+                            {
+                                if (btn.Name != "m")
+                                {
+                                    mtdizi[(a)] = (Convert.ToInt32(mtdizi[(a)]) + 1);
+                                    btn.Name = Convert.ToString(mtdizi[a]);
+                                    btn.ForeColor = Color.Black;
+                                }
+                            }
+                        }
+                    }
+                    a++;
+                    this.Controls.Add(btn);
+                    btn.Click += new EventHandler(btn_Click);
+                }
+            }
+        }
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
